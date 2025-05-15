@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Компьютерлік желілер тренажері</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .progress-bar {
+            transition: width 0.5s ease-in-out;
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Навигация -->
+    <nav class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-network-wired text-2xl"></i>
+                <span class="text-xl font-bold">Желілер тренажері</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#theory" class="hover:text-blue-200 transition">Теория</a>
+                <a href="#tests" class="hover:text-blue-200 transition">Тест</a>
+                <a href="#practice" class="hover:text-blue-200 transition">Практика</a>
+                <a href="#progress" class="hover:text-blue-200 transition">Прогресс</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Мобильное меню -->
+        <div id="mobile-menu" class="hidden md:hidden gradient-bg px-4 pb-4">
+            <a href="#theory" class="block py-2 hover:text-blue-200 transition">Теория</a>
+            <a href="#tests" class="block py-2 hover:text-blue-200 transition">Тест</a>
+            <a href="#practice" class="block py-2 hover:text-blue-200 transition">Практика</a>
+            <a href="#progress" class="block py-2 hover:text-blue-200 transition">Прогресс</a>
+        </div>
+    </nav>
+
+    <!-- Герой секция -->
+    <header class="gradient-bg text-white py-20">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Компьютерлік желілерді оқыту</h1>
+                <p class="text-xl mb-6">Желілердің негіздерін үйренуге арналған интерактивті тренажер. Теорияны оқыңыз, тесттерді шешіңіз және практикалық тапсырмаларды орындаңыз.</p>
+                <div class="flex space-x-4">
+                    <a href="#theory" class="bg-white text-blue-800 px-6 py-3 rounded-lg font-semibold hover:bg-blue-100 transition">Бастау</a>
+                    <a href="#features" class="border-2 border-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">Қосымша мәлімет</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/2283/2283337.png" alt="Network illustration" class="w-64 h-64 floating">
+            </div>
+        </div>
+    </header>
+
+    <!-- Особенности -->
+    <section id="features" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Қолда бар мүмкіндіктер</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-lg transition card-hover">
+                    <div class="text-blue-600 mb-4">
+                        <i class="fas fa-book-open text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Теориялық материалдар</h3>
+                    <p class="text-gray-600">Компьютерлік желілердің негізгі ұғымдары мен технологиялары туралы толық ақпарат.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-lg transition card-hover">
+                    <div class="text-blue-600 mb-4">
+                        <i class="fas fa-question-circle text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Интерактивті тесттер</h3>
+                    <p class="text-gray-600">Біліміңізді тексеруге арналған әртүрлі қиындық деңгейіндегі тесттер.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-lg transition card-hover">
+                    <div class="text-blue-600 mb-4">
+                        <i class="fas fa-laptop-code text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Практикалық тапсырмалар</h3>
+                    <p class="text-gray-600">Желілерді конфигурациялау және проблемаларды шешу бойынша нақты тапсырмалар.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Теория -->
+    <section id="theory" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Теория</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Карточка 1 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition card-hover">
+                    <div class="h-48 bg-blue-100 flex items-center justify-center">
+                        <i class="fas fa-sitemap text-6xl text-blue-600"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Желілердің негіздері</h3>
+                        <p class="text-gray-600 mb-4">Желілердің түрлері, топологиялар және негізгі ұғымдар.</p>
+                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 transition">Оқу <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Карточка 2 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition card-hover">
+                    <div class="h-48 bg-blue-100 flex items-center justify-center">
+                        <i class="fas fa-ethernet text-6xl text-blue-600"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">TCP/IP модельі</h3>
+                        <p class="text-gray-600 mb-4">Интернет протоколдарының қабаттары және олардың жұмыс принциптері.</p>
+                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 transition">Оқу <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Карточка 3 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition card-hover">
+                    <div class="h-48 bg-blue-100 flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-6xl text-blue-600"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Желілік қауіпсіздік</h3>
+                        <p class="text-gray-600 mb-4">Желілердегі қауіпсіздік қауіптері және олардан қорғану әдістері.</p>
+                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 transition">Оқу <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10">
+                <a href="#" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition">Барлық теориялық материалдарды көру</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Тест -->
+    <section id="tests" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Тест</h2>
+            
+            <div class="max-w-3xl mx-auto bg-gray-50 rounded-xl shadow-md overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/3 bg-blue-600 text-white p-8 flex flex-col justify-center">
+                        <h3 class="text-xl font-semibold mb-4">Негіздер тесті</h3>
+                        <p class="mb-4">Компьютерлік желілердің негізгі ұғымдары бойынша 10 сұрақ</p>
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-clock mr-2"></i>
+                            <span>15 минут</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-trophy mr-2"></i>
+                            <span>50 ұпай</span>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 p-8">
+                        <h4 class="text-lg font-medium mb-4">Тест ережелері:</h4>
+                        <ul class="list-disc pl-5 mb-6 space-y-2 text-gray-600">
+                            <li>Тестте 10 көп таңдау сұрағы бар</li>
+                            <li>Әр дұрыс жауап үшін 5 ұпай аласыз</li>
+                            <li>Тестті кез келген уақытта тоқтатуға болады</li>
+                            <li>Тестті аяқтағаннан кейін нәтижелерді көре аласыз</li>
+                        </ul>
+                        <button id="start-test-btn" class="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition">Тестті бастау</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Тест карточкалары -->
+            <div class="grid md:grid-cols-2 gap-6 mt-10">
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition card-hover">
+                    <h3 class="text-xl font-semibold mb-3">TCP/IP тесті</h3>
+                    <p class="text-gray-600 mb-4">Интернет протоколдары бойынша 15 сұрақ</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">12 минут</span>
+                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 transition">Бастау</a>
+                    </div>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition card-hover">
+                    <h3 class="text-xl font-semibold mb-3">Қауіпсіздік тесті</h3>
+                    <p class="text-gray-600 mb-4">Желілік қауіпсіздік бойынша 20 сұрақ</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">25 минут</span>
+                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 transition">Бастау</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Практика -->
+    <section id="practice" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Практика</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Симулятор -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="h-64 bg-blue-100 flex items-center justify-center">
+                        <i class="fas fa-network-wired text-8xl text-blue-600"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">Желі симуляторы</h3>
+                        <p class="text-gray-600 mb-4">Виртуалды ортада желі құрылымын жасау және конфигурациялау. Маршрутизаторларды, коммутаторларды және клиенттерді байланыстырыңыз.</p>
+                        <button class="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition">Симуляторды ашу</button>
+                    </div>
+                </div>
+                
+                <!-- Тапсырмалар -->
+                <div>
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6">
+                        <div class="p-6 border-b border-gray-200">
+                            <h3 class="text-xl font-semibold mb-2">IP мекенжайын конфигурациялау</h3>
+                            <p class="text-gray-600 mb-4">Желі құрылғыларына дұрыс IP мекен-жайларын тағайындау.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-500">Қиындық: Орташа</span>
+                                <a href="#" class="text-blue-600 font-medium hover:text-blue-800 transition">Бастау</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Маршрутизация кестесін құру</h3>
+                            <p class="text-gray-600 mb-4">Әртүрлі желілер арасында байланыс орнату үшін маршрутизация кестесін жасау.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-500">Қиындық: Қиын</span>
+                                <a href="#" class="text-blue-600 font-medium hover:text-blue-800 transition">Бастау</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Прогресс -->
+    <section id="progress" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Сіздің прогрессіңіз</h2>
+            
+            <div class="max-w-2xl mx-auto">
+                <!-- Общий прогресс -->
+                <div class="mb-8">
+                    <div class="flex justify-between mb-2">
+                        <span class="font-medium">Жалпы прогресс</span>
+                        <span>45%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-4">
+                        <div class="progress-bar bg-blue-600 h-4 rounded-full" style="width: 45%"></div>
+                    </div>
+                </div>
+                
+                <!-- Детали прогресса -->
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span>Теория</span>
+                            <span>60% (3/5 бөлім)</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="progress-bar bg-blue-500 h-2 rounded-full" style="width: 60%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span>Тесттер</span>
+                            <span>30% (6/20 тест)</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="progress-bar bg-green-500 h-2 rounded-full" style="width: 30%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span>Практика</span>
+                            <span>25% (2/8 тапсырма)</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="progress-bar bg-purple-500 h-2 rounded-full" style="width: 25%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Жетістіктер -->
+                <div class="mt-10">
+                    <h3 class="text-xl font-semibold mb-4">Жетістіктер</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-yellow-100 p-4 rounded-lg text-center">
+                            <i class="fas fa-medal text-3xl text-yellow-500 mb-2"></i>
+                            <p class="font-medium">Теорияны оқушы</p>
+                        </div>
+                        <div class="bg-gray-200 p-4 rounded-lg text-center opacity-50">
+                            <i class="fas fa-star text-3xl text-gray-400 mb-2"></i>
+                            <p class="font-medium text-gray-500">Тест шебері</p>
+                        </div>
+                        <div class="bg-gray-200 p-4 rounded-lg text-center opacity-50">
+                            <i class="fas fa-trophy text-3xl text-gray-400 mb-2"></i>
+                            <p class="font-medium text-gray-500">Практик</p>
+                        </div>
+                        <div class="bg-gray-200 p-4 rounded-lg text-center opacity-50">
+                            <i class="fas fa-award text-3xl text-gray-400 mb-2"></i>
+                            <p class="font-medium text-gray-500">Желі маманы</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="gradient-bg text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Желілер тренажері</h3>
+                    <p>Компьютерлік желілерді оқытуға арналған интерактивті платформа.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Байланыс</h3>
+                    <ul class="space-y-2">
+                        <li><i class="fas fa-envelope mr-2"></i> info@network-trainer.kz</li>
+                        <li><i class="fas fa-phone mr-2"></i> +7 (747) 532 6951</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> Шымкент, Қазақстан</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Әлеуметтік желілер</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-blue-200 transition"><i class="fab fa-facebook-f text-2xl"></i></a>
+                        <a href="#" class="text-white hover:text-blue-200 transition"><i class="fab fa-twitter text-2xl"></i></a>
+                        <a href="#" class="text-white hover:text-blue-200 transition"><i class="fab fa-instagram text-2xl"></i></a>
+                        <a href="#" class="text-white hover:text-blue-200 transition"><i class="fab fa-youtube text-2xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-blue-400 mt-8 pt-8 text-center">
+                <p>&copy; 2025 Желілер тренажері. Барлық құқықтар қорғалған.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Тест модальды терезесі -->
+    <div id="test-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-screen overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold">Негіздер тесті</h3>
+                    <button id="close-test-btn" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <!-- Тест сұрақтары -->
+                <div id="test-questions" class="space-y-6">
+                    <!-- Сұрақ 1 -->
+                    <div class="question">
+                        <p class="font-medium mb-3">1. Компьютерлік желі дегеніміз не?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                                <input type="radio" name="q1" class="form-radio text-blue-600">
+                                <span>Бір компьютердегі әртүрлі бағдарламалар</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                                <input type="radio" name="q1" class="form-radio text-blue-600">
+                                <span>Бірнеше компьютерлердің өзара байланысы</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                                <input type="radio" name="q1" class="form-radio text-blue-600">
+                                <span>Компьютердің ішкі құрылымы</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                                <input type="radio" name="q1" class="form-radio text-blue-600">
+                                <span>Интернетке қосылу құрылғысы</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Сұрақ 2 -->
+                    <div class="question">
+                        <p class="font-medium mb-3">2. LAN желісінің сипаттамасы қандай?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                                <input type="radio" name="q2" class="form-radio text-blue-600">
+                                <span>Үй желісі</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                                <input type="radio" name="q2" class="form-radio text-blue-600">
+                                <span>Жергілікті желі</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                                <input type="radio" name="q2" class="form-radio text-blue-600">
+                                <span>Ұзын қашықтықты желі</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                                <input type="radio" name="q2" class="form-radio text-blue-600">
+                                <span>Қалалық желі</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Тест бақылау түймелері -->
+                <div class="flex justify-between mt-8">
+                    <button id="prev-question-btn" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 disabled:opacity-50" disabled>
+                        <i class="fas fa-arrow-left mr-2"></i> Алдыңғы
+                    </button>
+                    <div class="text-gray-600">
+                        <span id="current-question">1</span> / <span id="total-questions">10</span> сұрақ
+                    </div>
+                    <button id="next-question-btn" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                        Келесі <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Мобильное меню
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Тест модальды терезесі
+        const startTestBtn = document.getElementById('start-test-btn');
+        const testModal = document.getElementById('test-modal');
+        const closeTestBtn = document.getElementById('close-test-btn');
+        const prevQuestionBtn = document.getElementById('prev-question-btn');
+        const nextQuestionBtn = document.getElementById('next-question-btn');
+        const currentQuestionEl = document.getElementById('current-question');
+        const totalQuestionsEl = document.getElementById('total-questions');
+        
+        startTestBtn.addEventListener('click', () => {
+            testModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeTestBtn.addEventListener('click', () => {
+            testModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Тест бақылау логикасы
+        let currentQuestion = 1;
+        const totalQuestions = 10;
+        
+        totalQuestionsEl.textContent = totalQuestions;
+        
+        nextQuestionBtn.addEventListener('click', () => {
+            if (currentQuestion < totalQuestions) {
+                currentQuestion++;
+                currentQuestionEl.textContent = currentQuestion;
+                prevQuestionBtn.disabled = false;
+                
+                if (currentQuestion === totalQuestions) {
+                    nextQuestionBtn.textContent = 'Тестті аяқтау';
+                }
+            } else {
+                // Тестті аяқтау логикасы
+                testModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+                alert('Тест аяқталды! Нәтижелеріңізді "Прогресс" бөлімінде көре аласыз.');
+                
+                // Қалпына келтіру
+                currentQuestion = 1;
+                currentQuestionEl.textContent = currentQuestion;
+                nextQuestionBtn.textContent = 'Келесі <i class="fas fa-arrow-right ml-2"></i>';
+                prevQuestionBtn.disabled = true;
+            }
+        });
+        
+        prevQuestionBtn.addEventListener('click', () => {
+            if (currentQuestion > 1) {
+                currentQuestion--;
+                currentQuestionEl.textContent = currentQuestion;
+                nextQuestionBtn.textContent = 'Келесі <i class="fas fa-arrow-right ml-2"></i>';
+                
+                if (currentQuestion === 1) {
+                    prevQuestionBtn.disabled = true;
+                }
+            }
+        });
+        
+        // Жылжу эффектілері
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Мобильді мәзірді жабу
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
