@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <title>Желі симуляторы</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a2e8b3f8e0.js" crossorigin="anonymous"></script>
+  <style>
+    .tool-btn {
+      @apply w-full px-4 py-2 rounded-lg bg-white text-gray-700 hover:bg-blue-100 border border-gray-300 transition text-left;
+    }
+    .device-box {
+      @apply bg-white border border-blue-300 rounded-lg p-2 shadow-lg w-24 text-center cursor-move select-none text-xs;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+  <div class="h-screen flex flex-col">
+    <!-- Top Bar -->
+    <div class="bg-blue-800 text-white px-6 py-4 flex justify-between items-center shadow-md">
+      <h1 class="text-2xl font-bold">Желі симуляторы</h1>
+      <button onclick="window.close()" class="text-white hover:text-gray-200 text-xl">
+        Жабу <i class="fas fa-times ml-2"></i>
+      </button>
+    </div>
+
+    <div class="flex flex-1 overflow-hidden">
+      <!-- Tools -->
+      <div class="w-64 bg-gray-50 border-r p-4 space-y-4 overflow-y-auto">
+        <h4 class="text-lg font-semibold mb-2 text-gray-700">Құралдар</h4>
+        <button onclick="setTool('router')" class="tool-btn">Маршрутизатор</button>
+        <button onclick="setTool('switch')" class="tool-btn">Коммутатор</button>
+        <button onclick="setTool('pc')" class="tool-btn">Клиент (PC)</button>
+        <button onclick="setTool('cable')" class="tool-btn">Кабель</button>
+        <button onclick="setTool('delete')" class="tool-btn">Құрылғыны жою</button>
+        <button onclick="clearCanvas()" class="tool-btn bg-red-100 text-red-600 hover:bg-red-200">Тазалау</button>
+        <hr>
+        <h4 class="text-sm font-semibold text-gray-600">Қосылған құрылғылар:</h4>
+        <ul id="device-list" class="text-xs space-y-1 text-gray-700 list-disc pl-4"></ul>
+      </div>
+
+      <!-- Canvas -->
+      <div id="canvas-area" class="flex-1 bg-white relative cursor-crosshair">
+        <svg id="cable-lines" class="absolute top-0 left-0 w-full h-full pointer-events-none z-10"></svg>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let tool = null;
+    let deviceCount = 0;
+    let cableStart = null;
+    const canvas = document.getElementById('canvas-area');
+    const svg = document.getElementById('cable-lines');
+    const deviceList = document.getElementById('device-list');
+
+    function setTool(selected) {
+      tool = selected;
+    }
+
+    function clearCanvas() {
+      canvas.querySelectorAll('.device').forEach(el => el.remove());
+      svg.innerHTML = '';
+      deviceList.innerHTML = '';
+      cableStart = null;
+      deviceCount = 0;
+    }
+
+    function addDevice(type) {
+      deviceCount++;
+      const div = document.createElement('div');
+      div.className = 'device device-box absolute';
+      div.id = `dev${deviceCount}`;
+      div.style.left = `${100 + deviceCount * 30}px`;
+      div.style.top = `${100 + deviceCount * 30}px`;
+      div.dataset.type = type;
+      div.dataset.ip = '';
+
+      let icon = '', label = '';
+      if (type === 'router') {
+        icon = '<i class="fas fa-route text-blue-600 text-lg"></i>';
+        label = 'Марш';
+      }
+      if (type === 'switch') {
+        icon = '<i class="fas fa-exchange-alt text-green-600 text-lg"></i>';
+        label = 'Комм';
+      }
+      if (type === 'pc') {
+        icon = '<i class="fas fa-desktop text-gray-700 text-lg"></i>';
+        label = 'PC';
+      }
+
+      div.innerHTML = `${icon}<div class="font-semibold">${label}</div><div class="text-gray-500 text-[10px]">IP: <span class="ip"></span></div>`;
+      canvas.appendChild(div);
+      enableDrag(div);
+      updateDeviceList();
+
+      div.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (tool === 'cable') {
+          if (!cableStart) {
+            cableStart = div;
+            div.classList.add('ring-2', 'ring-blue-400');
+          } else if (cableStart !== div) {
+            connectDevices(cableStart, div);
+            cableStart.classList.remove('ring-2', 'ring-blue-400');
+            cableStart = null;
+          }
+        } else if (tool === 'delete') {
+          div.remove();
+          updateDeviceList();
+          updateCables();
+        } else if (tool === null) {
+          const ip = prompt("IP мекенжайын енгізіңіз:", div.dataset.ip || '192.168.0.');
+          if (ip !== null) {
+            div.dataset.ip = ip;
+            div.querySelector('.ip').textContent = ip;
+            updateDeviceList();
+          }
+        }
+      });
+    }
+
+    function updateDeviceList() {
+      const devices = canvas.querySelectorAll('.device');
+      deviceList.innerHTML = '';
+      devices.forEach(dev => {
+        const li = document.createElement('li');
+        li.textContent = `${dev.dataset.type.toUpperCase()} (${dev.dataset.ip || 'IP жоқ'})`;
+        deviceList.appendChild(li);
+      });
+    }
+
+    function enableDrag(el) {
+      let offsetX = 0, offsetY = 0, isDragging = false;
+      el.addEventListener('mousedown', function (e) {
+        if (tool === 'cable' || tool === 'delete') return;
+        isDragging = true;
+        offsetX = e.clientX - el.offsetLeft;
+        offsetY = e.clientY - el.offsetTop;
+        el.style.zIndex = 1000;
+      });
+      document.addEventListener('mousemove', function (e) {
+        if (!isDragging) return;
+        el.style.left = (e.clientX - offsetX) + 'px';
+        el.style.top = (e.clientY - offsetY) + 'px';
+        updateCables();
+      });
+      document.addEventListener('mouseup', function () {
+        if (isDragging) {
+          isDragging = false;
+          el.style.zIndex = '';
+        }
+      });
+    }
+
+    function connectDevices(dev1, dev2) {
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.dataset.from = dev1.id;
+      line.dataset.to = dev2.id;
+      line.setAttribute('stroke', '#555');
+      line.setAttribute('stroke-width', '2');
+      svg.appendChild(line);
+      updateCables();
+    }
+
+    function updateCables() {
+      document.querySelectorAll('#cable-lines line').forEach(line => {
+        const fromEl = document.getElementById(line.dataset.from);
+        const toEl = document.getElementById(line.dataset.to);
+        if (!fromEl || !toEl) return;
+        const canvasRect = canvas.getBoundingClientRect();
+        const fromRect = fromEl.getBoundingClientRect();
+        const toRect = toEl.getBoundingClientRect();
+
+        const x1 = fromRect.left + fromRect.width / 2 - canvasRect.left;
+        const y1 = fromRect.top + fromRect.height / 2 - canvasRect.top;
+        const x2 = toRect.left + toRect.width / 2 - canvasRect.left;
+        const y2 = toRect.top + toRect.height / 2 - canvasRect.top;
+
+        line.setAttribute('x1', x1);
+        line.setAttribute('y1', y1);
+        line.setAttribute('x2', x2);
+        line.setAttribute('y2', y2);
+      });
+    }
+
+    canvas.addEventListener('click', () => {
+      if (tool && tool !== 'cable' && tool !== 'delete') {
+        addDevice(tool);
+      }
+    });
+  </script>
+</body>
+</html>
