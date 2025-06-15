@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Компьютерлік желілер тренажері</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="website icon" type="png" href="icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .gradient-bg {
@@ -116,7 +118,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-semibold mb-2">Желілердің негіздері</h3>
                         <p class="text-gray-600 mb-4">Желілердің түрлері, топологиялар және негізгі ұғымдар.</p>
-                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 transition">Оқу <i class="fas fa-arrow-right ml-1"></i></a>
+                        <a href="#" onclick="openTheoryModal()" class="text-blue-600 font-medium hover:text-blue-800 transition">Оқу <i class="fas fa-arrow-right ml-1"></i></a>
                     </div>
                 </div>
                 
@@ -128,7 +130,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-semibold mb-2">TCP/IP модельі</h3>
                         <p class="text-gray-600 mb-4">Интернет протоколдарының қабаттары және олардың жұмыс принциптері.</p>
-                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 transition">Оқу <i class="fas fa-arrow-right ml-1"></i></a>
+                        <a href="#" onclick="openTCPIPModal()" class="text-blue-600 font-medium hover:text-blue-800 transition">Оқу <i class="fas fa-arrow-right ml-1"></i></a>
                     </div>
                 </div>
                 
@@ -140,13 +142,15 @@
                     <div class="p-6">
                         <h3 class="text-xl font-semibold mb-2">Желілік қауіпсіздік</h3>
                         <p class="text-gray-600 mb-4">Желілердегі қауіпсіздік қауіптері және олардан қорғану әдістері.</p>
-                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 transition">Оқу <i class="fas fa-arrow-right ml-1"></i></a>
+                        <a href="#" onclick="openSecurityModal()" class="text-blue-600 font-medium hover:text-blue-800 transition">Оқу <i class="fas fa-arrow-right ml-1"></i></a>
                     </div>
                 </div>
             </div>
             
             <div class="text-center mt-10">
-                <a href="#" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition">Барлық теориялық материалдарды көру</a>
+                <a href="#" onclick="openAllTheoryModal()" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition">
+                    Барлық теориялық материалдарды көру
+                </a>
             </div>
         </div>
     </section>
@@ -190,7 +194,7 @@
                     <p class="text-gray-600 mb-4">Интернет протоколдары бойынша 15 сұрақ</p>
                     <div class="flex justify-between items-center">
                         <span class="text-sm text-gray-500">12 минут</span>
-                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 transition">Бастау</a>
+                        <a href="#" id="start-tcpip-test" class="text-blue-600 font-medium hover:text-blue-800 transition">Бастау</a>
                     </div>
                 </div>
                 <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition card-hover">
@@ -198,7 +202,7 @@
                     <p class="text-gray-600 mb-4">Желілік қауіпсіздік бойынша 20 сұрақ</p>
                     <div class="flex justify-between items-center">
                         <span class="text-sm text-gray-500">25 минут</span>
-                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 transition">Бастау</a>
+                        <a href="#" id="start-security-test" class="text-blue-600 font-medium hover:text-blue-800 transition">Бастау</a>
                     </div>
                 </div>
             </div>
@@ -219,7 +223,9 @@
                     <div class="p-6">
                         <h3 class="text-xl font-semibold mb-3">Желі симуляторы</h3>
                         <p class="text-gray-600 mb-4">Виртуалды ортада желі құрылымын жасау және конфигурациялау. Маршрутизаторларды, коммутаторларды және клиенттерді байланыстырыңыз.</p>
-                        <button class="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition">Симуляторды ашу</button>
+                        <a href="simulator.html" target="_blank" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition block text-center w-fit">
+                            Симуляторды ашу
+                        </a>
                     </div>
                 </div>
                 
@@ -231,7 +237,7 @@
                             <p class="text-gray-600 mb-4">Желі құрылғыларына дұрыс IP мекен-жайларын тағайындау.</p>
                             <div class="flex justify-between items-center">
                                 <span class="text-sm text-gray-500">Қиындық: Орташа</span>
-                                <a href="#" class="text-blue-600 font-medium hover:text-blue-800 transition">Бастау</a>
+                                <a href="#" onclick="openIpConfigTask()" class="text-blue-600 font-medium hover:text-blue-800 transition">Бастау</a>
                             </div>
                         </div>
                     </div>
@@ -242,7 +248,7 @@
                             <p class="text-gray-600 mb-4">Әртүрлі желілер арасында байланыс орнату үшін маршрутизация кестесін жасау.</p>
                             <div class="flex justify-between items-center">
                                 <span class="text-sm text-gray-500">Қиындық: Қиын</span>
-                                <a href="#" class="text-blue-600 font-medium hover:text-blue-800 transition">Бастау</a>
+                                <a href="#" onclick="openRoutingTask()" class="text-blue-600 font-medium hover:text-blue-800 transition">Бастау</a>
                             </div>
                         </div>
                     </div>
@@ -359,6 +365,162 @@
         </div>
     </footer>
 
+    <!-- Модаль: Желілердің негіздері -->
+    <div id="theory-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white max-w-2xl w-full p-6 rounded-lg shadow-lg overflow-y-auto max-h-[90vh]">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Желілердің негіздері</h3>
+                <button onclick="closeTheoryModal()" class="text-gray-600 hover:text-gray-800">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="text-gray-700 space-y-4">
+                <p><strong>Компьютерлік желі</strong> — бұл екі немесе одан да көп компьютердің немесе құрылғылардың байланысып, деректер алмасуы үшін біріктірілген жүйесі.</p>
+                <p><strong>Желілердің түрлері:</strong></p>
+                <ul class="list-disc pl-5">
+                    <li><b>LAN (жергілікті желі)</b> – үйде, мектепте немесе кеңседе қолданылады.</li>
+                    <li><b>MAN (қалалық желі)</b> – қала көлемінде жұмыс істейді.</li>
+                    <li><b>WAN (ауқымды желі)</b> – мемлекеттер мен континенттерді қамтиды.</li>
+                </ul>
+                <p><strong>Желілік топологиялар:</strong></p>
+                <ul class="list-disc pl-5">
+                    <li><b>Шина</b> – барлық құрылғылар бір кабельге қосылған.</li>
+                    <li><b>Жұлдыз</b> – әр құрылғы орталық хабқа жалғанған.</li>
+                    <li><b>Сақина</b> – құрылғылар бір-бірімен дөңгелек түрде байланысқан.</li>
+                    <li><b>Ағаш және тор</b> – күрделі топологиялар.</li>
+                </ul>
+                <p><strong>Негізгі ұғымдар:</strong></p>
+                <ul class="list-disc pl-5">
+                    <li>IP мекенжай</li>
+                    <li>Маршрутизация</li>
+                    <li>DNS</li>
+                    <li>MAC-адрес</li>
+                    <li>Пакеттер және протоколдар (TCP/IP)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модаль: TCP/IP модельі -->
+    <div id="tcpip-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white max-w-2xl w-full p-6 rounded-lg shadow-lg overflow-y-auto max-h-[90vh]">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">TCP/IP модельі</h3>
+                <button onclick="closeTCPIPModal()" class="text-gray-600 hover:text-gray-800">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="text-gray-700 space-y-4">
+                <p><strong>TCP/IP модель</strong> — бұл интернеттегі құрылғылар арасындағы байланыс пен дерек алмасуды басқаруға арналған протоколдар жиынтығы.</p>
+                <p><strong>Қабаттары:</strong></p>
+                <ul class="list-disc pl-5">
+                    <li><b>Қолданбалы қабат (Application Layer)</b> — HTTP, FTP, DNS.</li>
+                    <li><b>Транспорт қабаты (Transport Layer)</b> — TCP және UDP.</li>
+                    <li><b>Желі қабаты (Internet Layer)</b> — IP протоколы.</li>
+                    <li><b>Кіру қабаты (Network Access)</b> — Ethernet, Wi-Fi.</li>
+                </ul>
+                <p>TCP — сенімді байланыс, ал UDP — жылдам, бірақ сенімсіз байланыс ұсынады.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модаль: Желілік қауіпсіздік -->
+    <div id="security-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white max-w-2xl w-full p-6 rounded-lg shadow-lg overflow-y-auto max-h-[90vh]">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Желілік қауіпсіздік</h3>
+                <button onclick="closeSecurityModal()" class="text-gray-600 hover:text-gray-800">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="text-gray-700 space-y-4">
+                <p><strong>Желілік қауіпсіздік</strong> — желілердегі деректер мен құрылғылардың рұқсатсыз кіруден қорғалуы.</p>
+                <p><strong>Негізгі қауіптер:</strong></p>
+                <ul class="list-disc pl-5">
+                    <li>Хакерлік шабуылдар (DoS, MITM)</li>
+                    <li>Вирустар, трояндар, шпиондық бағдарламалар</li>
+                    <li>Фишинг және әлеуметтік инженерия</li>
+                </ul>
+                <p><strong>Қорғану әдістері:</strong></p>
+                <ul class="list-disc pl-5">
+                    <li>Брандмауэр (Firewall) қолдану</li>
+                    <li>Шифрлау (Encryption)</li>
+                    <li>Антивирус және қауіпсіздік протоколдары (SSL/TLS)</li>
+                    <li>Құпиясөзді қорғау, екі факторлы аутентификация</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Барлық теория модалі -->
+    <div id="all-theory-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white max-w-3xl w-full p-6 rounded-lg shadow-lg overflow-y-auto max-h-[90vh]">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-2xl font-bold">Барлық теориялық материалдар</h3>
+                <button onclick="closeAllTheoryModal()" class="text-gray-600 hover:text-gray-800">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="space-y-8 text-gray-700">
+                <div>
+                    <h4 class="text-xl font-semibold mb-2">1. Желілердің негіздері</h4>
+                    <p><strong>Компьютерлік желі</strong> — бұл екі немесе одан да көп компьютердің немесе құрылғылардың байланысып, деректер алмасуы үшін біріктірілген жүйесі.</p>
+                    <p><strong>Желілердің түрлері:</strong></p>
+                    <ul class="list-disc pl-5">
+                        <li><b>LAN (жергілікті желі)</b> – үйде, мектепте немесе кеңседе қолданылады.</li>
+                        <li><b>MAN (қалалық желі)</b> – қала көлемінде жұмыс істейді.</li>
+                        <li><b>WAN (ауқымды желі)</b> – мемлекеттер мен континенттерді қамтиды.</li>
+                    </ul>
+                    <p><strong>Желілік топологиялар:</strong></p>
+                    <ul class="list-disc pl-5">
+                        <li><b>Шина</b> – барлық құрылғылар бір кабельге қосылған.</li>
+                        <li><b>Жұлдыз</b> – әр құрылғы орталық хабқа жалғанған.</li>
+                        <li><b>Сақина</b> – құрылғылар бір-бірімен дөңгелек түрде байланысқан.</li>
+                        <li><b>Ағаш және тор</b> – күрделі топологиялар.</li>
+                    </ul>
+                    <p><strong>Негізгі ұғымдар:</strong></p>
+                    <ul class="list-disc pl-5">
+                        <li>IP мекенжай</li>
+                        <li>Маршрутизация</li>
+                        <li>DNS</li>
+                        <li>MAC-адрес</li>
+                        <li>Пакеттер және протоколдар (TCP/IP)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-2">2. TCP/IP модельі</h4>
+                    <p><strong>TCP/IP модель</strong> — бұл интернеттегі құрылғылар арасындағы байланыс пен дерек алмасуды басқаруға арналған протоколдар жиынтығы.</p>
+                    <p><strong>Қабаттары:</strong></p>
+                    <ul class="list-disc pl-5">
+                        <li><b>Қолданбалы қабат (Application Layer)</b> — HTTP, FTP, DNS.</li>
+                        <li><b>Транспорт қабаты (Transport Layer)</b> — TCP және UDP.</li>
+                        <li><b>Желі қабаты (Internet Layer)</b> — IP протоколы.</li>
+                        <li><b>Кіру қабаты (Network Access)</b> — Ethernet, Wi-Fi.</li>
+                    </ul>
+                    <p>TCP — сенімді байланыс, ал UDP — жылдам, бірақ сенімсіз байланыс ұсынады.</p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-2">3. Желілік қауіпсіздік</h4>
+                    <p><strong>Желілік қауіпсіздік</strong> — желілердегі деректер мен құрылғылардың рұқсатсыз кіруден қорғалуы.</p>
+                    <p><strong>Негізгі қауіптер:</strong></p>
+                    <ul class="list-disc pl-5">
+                        <li>Хакерлік шабуылдар (DoS, MITM)</li>
+                        <li>Вирустар, трояндар, шпиондық бағдарламалар</li>
+                        <li>Фишинг және әлеуметтік инженерия</li>
+                    </ul>
+                    <p><strong>Қорғану әдістері:</strong></p>
+                    <ul class="list-disc pl-5">
+                        <li>Брандмауэр (Firewall) қолдану</li>
+                        <li>Шифрлау (Encryption)</li>
+                        <li>Антивирус және қауіпсіздік протоколдары (SSL/TLS)</li>
+                        <li>Құпиясөзді қорғау, екі факторлы аутентификация</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Тест модальды терезесі -->
     <div id="test-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
         <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-screen overflow-y-auto">
@@ -372,51 +534,6 @@
                 
                 <!-- Тест сұрақтары -->
                 <div id="test-questions" class="space-y-6">
-                    <!-- Сұрақ 1 -->
-                    <div class="question">
-                        <p class="font-medium mb-3">1. Компьютерлік желі дегеніміз не?</p>
-                        <div class="space-y-2">
-                            <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-                                <input type="radio" name="q1" class="form-radio text-blue-600">
-                                <span>Бір компьютердегі әртүрлі бағдарламалар</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-                                <input type="radio" name="q1" class="form-radio text-blue-600">
-                                <span>Бірнеше компьютерлердің өзара байланысы</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-                                <input type="radio" name="q1" class="form-radio text-blue-600">
-                                <span>Компьютердің ішкі құрылымы</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-                                <input type="radio" name="q1" class="form-radio text-blue-600">
-                                <span>Интернетке қосылу құрылғысы</span>
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <!-- Сұрақ 2 -->
-                    <div class="question">
-                        <p class="font-medium mb-3">2. LAN желісінің сипаттамасы қандай?</p>
-                        <div class="space-y-2">
-                            <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-                                <input type="radio" name="q2" class="form-radio text-blue-600">
-                                <span>Үй желісі</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-                                <input type="radio" name="q2" class="form-radio text-blue-600">
-                                <span>Жергілікті желі</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-                                <input type="radio" name="q2" class="form-radio text-blue-600">
-                                <span>Ұзын қашықтықты желі</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-                                <input type="radio" name="q2" class="form-radio text-blue-600">
-                                <span>Қалалық желі</span>
-                            </label>
-                        </div>
-                    </div>
                 </div>
                 
                 <!-- Тест бақылау түймелері -->
@@ -435,6 +552,121 @@
         </div>
     </div>
 
+
+    <!-- Нәтиже модаль -->
+    <div id="result-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-xl p-8 max-w-md w-full text-center animate__animated animate__zoomIn">
+            <div class="text-green-500 text-6xl mb-4">
+                <i class="fas fa-check-circle animate-bounce"></i>
+            </div>
+            <h2 class="text-2xl font-bold mb-2">Құттықтаймыз!</h2>
+            <p class="text-gray-700 mb-4">Сіз тестті аяқтадыңыз.</p>
+            <p class="text-xl font-semibold mb-6">Сіздің нәтижеңіз: <span id="score-result" class="text-blue-600"></span> ұпай</p>
+            <button onclick="closeResultModal()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                Жабу
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Симулятор модалі -->
+    <div id="simulator-modal" class="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white w-[95%] h-[90%] rounded-xl shadow-xl overflow-hidden flex flex-col relative">
+            <!-- Жоғарғы панель -->
+            <div class="bg-blue-800 text-white px-6 py-3 flex justify-between items-center">
+                <h3 class="text-xl font-bold">Желі симуляторы</h3>
+                <button onclick="closeSimulator()" class="hover:text-blue-200 text-2xl">
+                    &times;
+                </button>
+            </div>
+
+            <!-- SVG сызықтар -->
+            <svg id="cable-lines" class="absolute top-0 left-0 w-full h-full pointer-events-none z-10"></svg>
+
+            <!-- Негізгі аймақ -->
+            <div class="flex flex-1 overflow-hidden">
+                <!-- Құралдар -->
+                <div class="w-64 bg-gray-100 border-r p-4 space-y-4 overflow-y-auto">
+                    <h4 class="text-lg font-semibold mb-2 text-gray-700">Құралдар</h4>
+                    <button onclick="setTool('router')" class="tool-btn">Маршрутизатор</button>
+                    <button onclick="setTool('switch')" class="tool-btn">Коммутатор</button>
+                    <button onclick="setTool('pc')" class="tool-btn">Клиент (PC)</button>
+                    <button onclick="setTool('cable')" class="tool-btn">Кабель</button>
+                    <button onclick="clearCanvas()" class="tool-btn bg-red-100 text-red-600 hover:bg-red-200">Тазалау</button>
+                </div>
+
+                <!-- Canvas аймағы -->
+                <div id="canvas-area" class="flex-1 bg-gray-50 relative cursor-crosshair">
+                    <!-- Құрылғылар осында қосылады -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- IP конфигурация модалі -->
+    <div id="ip-task-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white max-w-xl w-full p-6 rounded-lg shadow-lg relative">
+            <button onclick="closeIpConfigTask()" class="absolute top-2 right-2 text-gray-600 hover:text-gray-800 text-xl">&times;</button>
+            <h2 class="text-xl font-bold mb-4">IP мекенжайын конфигурациялау</h2>
+            <p class="text-gray-700 mb-4">Маршрутизаторға және компьютерге сәйкес IP мекенжайларын тағайындаңыз:</p>
+            <div class="space-y-3">
+                <label class="block">
+                    <span class="text-gray-600 font-medium">Маршрутизатор IP:</span>
+                    <input type="text" id="ip-router" class="w-full border border-gray-300 rounded p-2" placeholder="мысалы: 192.168.0.1">
+                </label>
+                <label class="block">
+                    <span class="text-gray-600 font-medium">Компьютер IP:</span>
+                    <input type="text" id="ip-pc" class="w-full border border-gray-300 rounded p-2" placeholder="мысалы: 192.168.0.2">
+                </label>
+            </div>
+            <div class="mt-4 text-right">
+                <button onclick="checkIpConfig()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Тексеру</button>
+            </div>
+            <div id="ip-check-result" class="mt-4 font-semibold text-sm"></div>
+        </div>
+    </div>
+
+
+    <!-- Маршрутизация тапсырмасы -->
+    <div id="routing-task-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white max-w-2xl w-full p-6 rounded-lg shadow-lg relative">
+            <button onclick="closeRoutingTask()" class="absolute top-2 right-2 text-gray-600 hover:text-gray-800 text-xl">&times;</button>
+            <h2 class="text-xl font-bold mb-4">Маршрутизация кестесін құру</h2>
+            <p class="text-gray-700 mb-4">Төменде үш желі арасындағы байланыс үшін маршрутизация кестесін толтырыңыз:</p>
+            <table class="w-full text-sm border border-gray-300 mb-4">
+                <thead class="bg-gray-100 text-left">
+                    <tr>
+                        <th class="p-2 border">Желі</th>
+                        <th class="p-2 border">Маска</th>
+                        <th class="p-2 border">Шлюз</th>
+                        <th class="p-2 border">Интерфейс</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="p-2 border"><input type="text" id="net1" class="w-full border rounded p-1" placeholder="192.168.1.0"></td>
+                        <td class="p-2 border"><input type="text" id="mask1" class="w-full border rounded p-1" placeholder="255.255.255.0"></td>
+                        <td class="p-2 border"><input type="text" id="gw1" class="w-full border rounded p-1" placeholder="192.168.1.1"></td>
+                        <td class="p-2 border"><input type="text" id="iface1" class="w-full border rounded p-1" placeholder="Gig0/0"></td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 border"><input type="text" id="net2" class="w-full border rounded p-1" placeholder="10.0.0.0"></td>
+                        <td class="p-2 border"><input type="text" id="mask2" class="w-full border rounded p-1" placeholder="255.0.0.0"></td>
+                        <td class="p-2 border"><input type="text" id="gw2" class="w-full border rounded p-1" placeholder="10.0.0.1"></td>
+                        <td class="p-2 border"><input type="text" id="iface2" class="w-full border rounded p-1" placeholder="Gig0/1"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-right">
+                <button onclick="checkRoutingTable()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Тексеру</button>
+            </div>
+            <div id="routing-check-result" class="mt-4 font-semibold text-sm"></div>
+        </div>
+    </div>
+
+
+
     <script>
         // Мобильное меню
         const menuBtn = document.getElementById('menu-btn');
@@ -443,6 +675,51 @@
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
+
+        // Модаль логикасы
+        const theoryModal = document.getElementById('theory-modal');
+        function openTheoryModal() {
+            theoryModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeTheoryModal() {
+            theoryModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // TCP/IP модаль
+        const tcpipModal = document.getElementById('tcpip-modal');
+        function openTCPIPModal() {
+            tcpipModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeTCPIPModal() {
+            tcpipModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Қауіпсіздік модаль
+        const securityModal = document.getElementById('security-modal');
+        function openSecurityModal() {
+            securityModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeSecurityModal() {
+            securityModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Барлық теория бір жерде
+        const allTheoryModal = document.getElementById('all-theory-modal');
+        function openAllTheoryModal() {
+            allTheoryModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeAllTheoryModal() {
+            allTheoryModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
         
         // Тест модальды терезесі
         const startTestBtn = document.getElementById('start-test-btn');
@@ -453,57 +730,173 @@
         const currentQuestionEl = document.getElementById('current-question');
         const totalQuestionsEl = document.getElementById('total-questions');
         
-        startTestBtn.addEventListener('click', () => {
-            testModal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        });
-        
         closeTestBtn.addEventListener('click', () => {
             testModal.classList.add('hidden');
             document.body.style.overflow = 'auto';
         });
-        
+
         // Тест бақылау логикасы
-        let currentQuestion = 1;
-        const totalQuestions = 10;
-        
-        totalQuestionsEl.textContent = totalQuestions;
-        
+        let questions = [];
+        let currentIndex = 0;
+
+        startTestBtn.addEventListener('click', async () => {
+            const response = await fetch('questions.json');
+            questions = await response.json();
+            totalQuestionsEl.textContent = questions.length;
+            currentIndex = 0;
+            showQuestion();
+            testModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        function showQuestion() {
+            const question = questions[currentIndex];
+            currentQuestionEl.textContent = currentIndex + 1;
+
+            const container = document.getElementById('test-questions');
+            container.innerHTML = `
+                <div class="question">
+                    <p class="font-medium mb-3">${currentIndex + 1}. ${question.question}</p>
+                    ${question.options.map((opt, i) => `
+                        <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q${currentIndex}" value="${i}" class="form-radio text-blue-600">
+                            <span>${opt}</span>
+                        </label>
+                    `).join('')}
+                </div>
+            `;
+        }
+
         nextQuestionBtn.addEventListener('click', () => {
-            if (currentQuestion < totalQuestions) {
-                currentQuestion++;
-                currentQuestionEl.textContent = currentQuestion;
+            if (currentIndex < questions.length - 1) {
+                currentIndex++;
+                showQuestion();
                 prevQuestionBtn.disabled = false;
-                
-                if (currentQuestion === totalQuestions) {
+                if (currentIndex === questions.length - 1) {
                     nextQuestionBtn.textContent = 'Тестті аяқтау';
                 }
             } else {
-                // Тестті аяқтау логикасы
+                alert("Тест аяқталды!");
                 testModal.classList.add('hidden');
                 document.body.style.overflow = 'auto';
-                alert('Тест аяқталды! Нәтижелеріңізді "Прогресс" бөлімінде көре аласыз.');
-                
+
                 // Қалпына келтіру
-                currentQuestion = 1;
-                currentQuestionEl.textContent = currentQuestion;
+                currentIndex = 0;
+                currentQuestionEl.textContent = currentIndex + 1;
                 nextQuestionBtn.textContent = 'Келесі <i class="fas fa-arrow-right ml-2"></i>';
                 prevQuestionBtn.disabled = true;
             }
         });
-        
+
         prevQuestionBtn.addEventListener('click', () => {
-            if (currentQuestion > 1) {
-                currentQuestion--;
-                currentQuestionEl.textContent = currentQuestion;
+            if (currentIndex > 0) {
+                currentIndex--;
+                showQuestion();
                 nextQuestionBtn.textContent = 'Келесі <i class="fas fa-arrow-right ml-2"></i>';
-                
-                if (currentQuestion === 1) {
+                if (currentIndex === 0) {
                     prevQuestionBtn.disabled = true;
                 }
             }
         });
-        
+
+        // Барлық тесттерге ортақ функция
+        async function startTestFromFile(filename) {
+            const response = await fetch(filename);
+            questions = await response.json();
+            totalQuestionsEl.textContent = questions.length;
+            currentIndex = 0;
+            showQuestion();
+            testModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 3 түрлі тестті ашу
+        document.getElementById('start-test-btn').addEventListener('click', () => {
+            startTestFromFile('questions.json');
+        });
+
+        document.getElementById('start-tcpip-test').addEventListener('click', () => {
+            startTestFromFile('tcpip.json');
+        });
+
+        document.getElementById('start-security-test').addEventListener('click', () => {
+            startTestFromFile('security.json');
+        });
+
+
+        // IP конфигурация модалі
+        function openIpConfigTask() {
+            document.getElementById('ip-task-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeIpConfigTask() {
+            document.getElementById('ip-task-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function checkIpConfig() {
+            const ipRouter = document.getElementById('ip-router').value.trim();
+            const ipPc = document.getElementById('ip-pc').value.trim();
+            const result = document.getElementById('ip-check-result');
+
+            // Ең қарапайым тексеріс: дұрыс IP беру
+            if (ipRouter === '192.168.0.1' && ipPc === '192.168.0.2') {
+                result.textContent = '✅ Дұрыс! IP мекенжайлары дұрыс конфигурацияланған.';
+                result.classList.remove('text-red-600');
+                result.classList.add('text-green-600');
+            } else {
+                result.textContent = '❌ Қате! IP мекенжайлары дұрыс емес.';
+                result.classList.remove('text-green-600');
+                result.classList.add('text-red-600');
+            }
+        }
+
+
+        // Маршрутизация тапсырмасы
+        function openRoutingTask() {
+            document.getElementById('routing-task-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeRoutingTask() {
+            document.getElementById('routing-task-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function checkRoutingTable() {
+            const net1 = document.getElementById('net1').value.trim();
+            const mask1 = document.getElementById('mask1').value.trim();
+            const gw1 = document.getElementById('gw1').value.trim();
+            const iface1 = document.getElementById('iface1').value.trim();
+
+            const net2 = document.getElementById('net2').value.trim();
+            const mask2 = document.getElementById('mask2').value.trim();
+            const gw2 = document.getElementById('gw2').value.trim();
+            const iface2 = document.getElementById('iface2').value.trim();
+
+            const result = document.getElementById('routing-check-result');
+
+            if (
+                net1 === '192.168.1.0' &&
+                mask1 === '255.255.255.0' &&
+                gw1 === '192.168.1.1' &&
+                iface1.toLowerCase() === 'gig0/0' &&
+
+                net2 === '10.0.0.0' &&
+                mask2 === '255.0.0.0' &&
+                gw2 === '10.0.0.1' &&
+                iface2.toLowerCase() === 'gig0/1'
+            ) {
+                result.textContent = '✅ Дұрыс! Маршрутизация кестесі дұрыс толтырылған.';
+                result.classList.remove('text-red-600');
+                result.classList.add('text-green-600');
+            } else {
+                result.textContent = '❌ Қате! Кестеде кем дегенде бір мән дұрыс емес.';
+                result.classList.remove('text-green-600');
+                result.classList.add('text-red-600');
+            }
+        }
+
+
         // Жылжу эффектілері
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
